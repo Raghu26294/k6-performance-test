@@ -1,0 +1,55 @@
+{
+  "journeys": [
+    {
+      "name": "browseJourney",
+      "description": "User browses users, their posts and comments",
+      "vus": 3,
+      "rampUpTime": "15s",
+      "steadyTime": "30s",
+      "rampDownTime": "10s",
+      "thinkTime": "1s",
+      "steps": ["getUsers", "getUserById", "getUserPosts", "getPostComments"],
+      "thresholds": {
+        "http_req_duration": ["p(95)<1000"],
+        "checks": ["rate>0.98"]
+      }
+    },
+    {
+      "name": "contentCreationJourney",
+      "description": "User creates a post, comments on it, then updates it",
+      "vus": 2,
+      "rampUpTime": "20s",
+      "steadyTime": "1m",
+      "rampDownTime": "10s",
+      "thinkTime": "1.5s",
+      "steps": ["createPost", "createComment", "updatePost", "getPostById"],
+      "thresholds": {
+        "http_req_duration": ["p(95)<1200"],
+        "checks": ["rate>0.95"]
+      }
+    },
+    {
+      "name": "albumPhotoJourney",
+      "description": "User browses albums and photos end to end",
+      "vus": 3,
+      "rampUpTime": "20s",
+      "steadyTime": "1m30s",
+      "rampDownTime": "15s",
+      "thinkTime": "1s",
+      "steps": ["getAlbums", "getAlbumById", "getAlbumPhotos", "getPhotoById"],
+      "thresholds": {
+        "http_req_duration": ["p(95)<1500"]
+      }
+    },
+    {
+      "name": "adminCleanupJourney",
+      "description": "Admin reviews and deletes stale todos/users",
+      "vus": 2,
+      "rampUpTime": "10s",
+      "steadyTime": "45s",
+      "rampDownTime": "10s",
+      "thinkTime": "2s",
+      "steps": ["getTodos", "getTodoById", "deleteTodo", "deleteUser"]
+    }
+  ]
+}

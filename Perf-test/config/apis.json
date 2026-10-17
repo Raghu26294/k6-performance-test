@@ -1,0 +1,127 @@
+{
+  "apis": [
+    {
+      "name": "getPosts",
+      "method": "GET",
+      "path": "/posts",
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<800"
+        ],
+        "checks": [
+          "rate>0.99"
+        ]
+      }
+    },
+    {
+      "name": "getPostById",
+      "method": "GET",
+      "path": "/posts/1",
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<500"
+        ]
+      }
+    },
+    {
+      "name": "getPostById2",
+      "method": "GET",
+      "path": "/posts/2",
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<500"
+        ]
+      }
+    },
+    {
+      "name": "getPostComments",
+      "method": "GET",
+      "path": "/posts/1/comments",
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<600"
+        ]
+      }
+    },
+    {
+      "name": "createPost",
+      "method": "POST",
+      "path": "/posts",
+      "body": {
+        "title": "perf-title",
+        "body": "perf-body",
+        "userId": 1
+      },
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<700"
+        ],
+        "checks": [
+          "rate>0.98"
+        ]
+      }
+    },
+    {
+      "name": "updatePost",
+      "method": "PUT",
+      "path": "/posts/1",
+      "body": {
+        "id": 1,
+        "title": "updated",
+        "body": "updated-body",
+        "userId": 1
+      },
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<700"
+        ],
+        "checks": [
+          "rate>0.98"
+        ]
+      }
+    },
+    {
+      "name": "patchPost",
+      "method": "PATCH",
+      "path": "/posts/1",
+      "body": {
+        "title": "patched-title"
+      },
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<600"
+        ]
+      }
+    },
+    {
+      "name": "deletePost",
+      "method": "DELETE",
+      "path": "/posts/1",
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<500"
+        ]
+      }
+    },
+    {
+      "name": "getPostById3",
+      "method": "GET",
+      "path": "/posts/3",
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<1"
+        ]
+      }
+    },
+    {
+      "name": "getPostById4",
+      "method": "GET",
+      "path": "/posts/4",
+      "thresholds": {
+        "http_req_duration": [
+          "p(95)<500"
+        ]
+      }
+    }
+  ]
+}
